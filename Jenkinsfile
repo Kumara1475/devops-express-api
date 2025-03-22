@@ -31,5 +31,10 @@ pipeline {
                 junit allowEmptyResults: true, stdioRetention: 'ALL', testResults: 'test-results.xml'
             }
         }
+        stage('code coverage') {
+            steps {
+                sh 'npm run coverage'
+            }
+        }
     }
 }
