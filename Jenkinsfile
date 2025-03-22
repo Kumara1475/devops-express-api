@@ -28,6 +28,7 @@ pipeline {
         stage('unit testing') {
             steps {
                 sh 'npm test'
+                junit allowEmptyResults: true, stdioRetention: 'ALL', testResults: 'test-results.xml'
             }
         }
     }
