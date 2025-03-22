@@ -14,8 +14,8 @@ module.exports = {
       [
         "jest-junit", // JUnit reporter
         {
-          outputDirectory: "test-results", // Folder to save the report
-          outputName: "junit.xml",        // Name of the report file
+          outputDirectory: ".", // Save in the root directory
+          outputName: "test-results.xml", // File name
         },
       ],
     ],
