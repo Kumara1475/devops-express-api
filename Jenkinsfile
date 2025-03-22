@@ -5,9 +5,15 @@ pipeline {
        nodejs 'node-23-10-0'
     }
 
+    environment {
+            DB_CREDS = credentials('db_cred')
+    }
+
     stages {
         stage('install dependencies') {
             steps {
+                sh 'echo "Service user is $DB_CREDS_USR"'
+                sh 'echo "Service password is $DB_CREDS_PSW"'
                 sh 'npm install'
             }
         }
@@ -35,7 +41,7 @@ pipeline {
         stage('code coverage') {
             steps {
                 sh 'npm run coverage'
-                
+
                 publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, icon: '', keepAll: true, reportDir: 'coverage/lcov-report/', reportFiles: 'index.html', reportName: 'Code Coverage HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
             
