@@ -28,14 +28,17 @@ pipeline {
         stage('unit testing and publishing') {
             steps {
                 sh 'npm test'
+                junit allowEmptyResults: true, stdioRetention: 'ALL', testResults: 'test-results.xml'
             }
-            junit allowEmptyResults: true, stdioRetention: 'ALL', testResults: 'test-results.xml'
+            
         }
         stage('code coverage') {
             steps {
                 sh 'npm run coverage'
+                
+                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, icon: '', keepAll: true, reportDir: 'coverage/lcov-report/', reportFiles: 'index.html', reportName: 'Code Coverage HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
-            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, icon: '', keepAll: true, reportDir: 'coverage/lcov-report/', reportFiles: 'index.html', reportName: 'Code Coverage HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            
         }
     }
 }
