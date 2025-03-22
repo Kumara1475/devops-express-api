@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "author": "Your Name",
   "license": "MIT",
