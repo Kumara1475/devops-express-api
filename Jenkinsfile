@@ -5,6 +5,11 @@ pipeline {
        nodejs 'node-23-10-0'
     }
 
+    environment {
+        SONAR_SCANNER_HOME = tool 'Sonar-Scanner-7.1.0.4880'
+    }
+
+
     stages {
         stage('install dependencies') {
             steps {
@@ -43,7 +48,7 @@ pipeline {
         stage('SAST - SonarQube') {
             steps {
                 sh '''
-                sonar-scanner \
+                $SONAR_SCANNER_HOME/bin/sonar-scanner \
                      -Dsonar.projectKey=devops-project \
                      -Dsonar.sources=. \
                      -Dsonar.host.url=http://35.194.12.76:9000 \
