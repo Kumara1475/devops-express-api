@@ -38,7 +38,7 @@ pipeline {
             }
             
         }
-        stage('code coverage') {
+        stage('code coverage1') {
             steps {
                 sh 'npm run coverage'
 
