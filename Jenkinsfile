@@ -53,6 +53,7 @@ pipeline {
                      -Dsonar.sources=. \
                      -Dsonar.host.url=http://35.194.12.76:9000 \
                      -Dsonar.login=sqp_16fdfa04966d3c4a30ec59c8727f113aaabb72ab
+                     -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
                 '''
             }
         }
